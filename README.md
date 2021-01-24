@@ -15,3 +15,4 @@ Built with
 Todo:
 * Adding a light sensor to dim the LED when it's dark.
 * Add a way to see exactly how long it's been and perhaps reset the time
+* Mount and enclose things properly
