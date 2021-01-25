@@ -7,7 +7,7 @@ A sensor detects when the door to the dog food container is opened/closed and co
 <br>
 🔴 Red indicates the dog has not been fed her current meal
 <br>
-🔵 Blue indicates the doof is either opened now, or the microcontroller has rebooted and doesn't know the last time the door was opened.
+🔵 Blue indicates the door is opened now, or the wire is disconnected, or the microcontroller rebooted and doesn't know the last time the door was opened. 
 
 ![open](pics/open.jpg) ![closed](pics/closed.jpg)
 
