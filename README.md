@@ -2,9 +2,12 @@
 Answers the question of "Did anyone feed the dog yet?"
 
 A sensor detects when the door to the dog food container is opened/closed and colors the LED to indicate when the dog was fed last:
-* 🟢 Green indicates that the dog has been fed her breakfast / dinner (or at least that the food has been opened within the last 8 hours)
-* 🔴 Red indicates the dog has not been fed her current meal
-* 🔵 Blue indicates the doof is either opened now, or the microcontroller has rebooted and doesn't know the last time the door was opened.
+
+🟢 Green indicates that the dog has been fed her breakfast / dinner (or at least that the food container has been opened within the last 8 hours)
+<br>
+🔴 Red indicates the dog has not been fed her current meal
+<br>
+🔵 Blue indicates the doof is either opened now, or the microcontroller has rebooted and doesn't know the last time the door was opened.
 
 ![open](pics/open.jpg) ![closed](pics/closed.jpg)
 
@@ -22,5 +25,6 @@ Todo:
 * Add a way to see exactly how long it's been and perhaps set the time
 * Mount and enclose things properly
 
-Ut oh...
 ![the dog adjusting the code to get an extra meal](pics/dog-computer.jpg)
+
+Rut roh...
