@@ -9,6 +9,8 @@ Built with
 * Adafruit QT Py - https://www.adafruit.com/product/4600
 * Magnetic contact switch (door sensor) - https://www.adafruit.com/product/375
 * 2-pin JST SM Plug + Receptacle Cable Set (optional) -https://www.adafruit.com/product/2880
+* USB C Raspberry Pi Power Supply (any USB-C power supply will work here) - https://www.adafruit.com/product/4298
+* Solder, cardboard, tape, hot-melt glue
 
 ![parts](pics/parts.jpg) ![soldered](pics/soldered.jpg)
 
