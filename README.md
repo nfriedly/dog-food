@@ -1,7 +1,10 @@
-# dog-food
+# Dog feeding tracker
 Answers the question of "Did anyone feed the dog yet?"
 
-A sensor detects when the door to the dog food container is opened and turns the LED green if it has been opened within the last 8 hours, red if it hasn't. When the door is open, or it just booted up and doesn't know the last time the door opened, then the LED is blue.
+A sensor detects when the door to the dog food container is opened/closed and colors the LED to indicate when the dog was fed last:
+* 🟢 Green indicates that the dog has been fed her breakfast / dinner (or at least that the food has been opened within the last 8 hours)
+* 🔴 Red indicates the dog has not been fed her current meal
+* 🔵 Blue indicates the doof is either opened now, or the microcontroller has rebooted and doesn't know the last time the door was opened.
 
 ![open](pics/open.jpg) ![closed](pics/closed.jpg)
 
@@ -16,5 +19,8 @@ Built with
 
 Todo:
 * Adding a light sensor to dim the LED when it's dark.
-* Add a way to see exactly how long it's been and perhaps reset the time
+* Add a way to see exactly how long it's been and perhaps set the time
 * Mount and enclose things properly
+
+Ut oh...
+![the dog adjusting the code to get an extra meal](pics/dog-computer.jpg)
