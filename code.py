@@ -6,10 +6,11 @@ import time
 import board
 import neopixel
 from digitalio import DigitalInOut, Direction, Pull
+import colors
 
-print("Hello, CircuitPython!")
+print("Dog food timer initializing...")
 
-pixels = neopixel.NeoPixel(board.NEOPIXEL, 1)
+rgb = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.5, auto_write=True)
 
 switch = DigitalInOut(board.D2)
 switch.direction = Direction.INPUT
@@ -19,32 +20,71 @@ minOpenSeconds = 1
 turnRedAfterSeconds = 8 * 60 * 60
 
 
+# states (does circuitpython support enums?)
+UNKNOWN = 0
+SHORT_OPEN = 1
+LONG_OPEN = 2
+FED = 3
+HUNGRY = 4
+
 # initial state at startup
 isOpen = False
 lastOpenTime = -1
 curOpenTime = -1
+colorGenerator = colors.Strober(color=colors.BLUE, duration=1)
+prevState = UNKNOWN
 
 while True:
     now = time.monotonic()
+    state = prevState
+
+    # first calculate the state
     if switch.value:
         # lid is open
-        pixels.fill((0, 0, 255))
         if isOpen:
             if now - curOpenTime > minOpenSeconds:
                 lastOpenTime = curOpenTime
+                state = LONG_OPEN
         else:
             isOpen = True
             curOpenTime = now
-
+            state = SHORT_OPEN
     else:
         # lid is closed
         isOpen = False
         if lastOpenTime == -1:
             # unknown state, probably just rebooted
-            pixels.fill((0, 0, 255))
+            state = UNKNOWN
         elif now - lastOpenTime > turnRedAfterSeconds:
-            pixels.fill((255,0,0))
+            state = HUNGRY
         else:
-            pixels.fill((0, 255, 0))
+            state = FED
+
+    # if the state has changed, swap in a new colorGenerator
+    if state != prevState:
+        #print("state changed from {} to {}".format(prevState, state))
+        prevState = state
+        if state == SHORT_OPEN:
+            print("Lid is open")
+            # solid blue (doesn't actually need a generator, but meh, this is only for 1 second)
+            colorGenerator = colors.Fader((colors.BLUE, colors.RED), duration=1)
+        elif state == LONG_OPEN:
+            print("Lid has been open long enough to assume the dog has been fed")
+            # rainbow
+            colorGenerator = colors.Fader(colors.RAINBOW, duration=3)
+        elif state == FED:
+            print("The dog has been fed")
+            # green breathing
+            colorGenerator = colors.Fader((colors.GREEN, colors.BLACK), duration=6)
+        elif state == HUNGRY:
+            print("Time to feed the dog")
+            # red strobe
+            colorGenerator = colors.Strober(color=colors.RED, duration=1)
+        else:
+            # unknown
+            colorGenerator = colors.Strober(color=colors.BLUE, duration=1)
+
+    if colorGenerator.update():
+        rgb.fill(colorGenerator.color)
 
     time.sleep(0.01)  # debounce delay
