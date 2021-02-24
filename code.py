@@ -66,7 +66,7 @@ while True:
         prevState = state
         if state == SHORT_OPEN:
             print("Lid is open")
-            # solid blue (doesn't actually need a generator, but meh, this is only for 1 second)
+            # fade from blue (door is open) to red (start of rainbow)
             colorGenerator = colors.Fader((colors.BLUE, colors.RED), duration=1)
         elif state == LONG_OPEN:
             print("Lid has been open long enough to assume the dog has been fed")
