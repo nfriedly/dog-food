@@ -87,4 +87,6 @@ while True:
     if colorGenerator.update():
         rgb.fill(colorGenerator.color)
 
-    time.sleep(0.01)  # debounce delay
+    frameTime = time.monotonic() - now
+
+    time.sleep(1/60 - frameTime)  # target 60FPS
