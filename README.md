@@ -7,7 +7,7 @@ A sensor detects when the door to the dog food container is opened/closed and co
 <br>
 🔴 Red indicates the dog has not been fed her current meal
 <br>
-🔵 Blue indicates the door is opened now, or the wire is disconnected, or the microcontroller rebooted and doesn't know the last time the door was opened. 
+🔵 Blue indicates the door is opened now, or the wire is disconnected, or the microcontroller rebooted and doesn't know the last time the door was opened. After the door has been opened for a brief period, it switches to rainbow to indicate that the timer has been reset.
 
 ![open](pics/open.jpg) ![closed](pics/closed.jpg)
 
@@ -21,7 +21,6 @@ Built with
 ![parts](pics/parts.jpg) ![soldered](pics/soldered.jpg)
 
 Todo:
-* Adding a light sensor to dim the LED when it's dark.
 * Add a way to see exactly how long it's been and perhaps set the time
 * Mount and enclose things properly
 
