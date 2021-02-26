@@ -19,6 +19,10 @@ switch.pull = Pull.UP
 minOpenSeconds = 1
 turnRedAfterSeconds = 8 * 60 * 60
 
+FPS = 60
+maxFrameTime = 1/FPS
+
+print("Target frame time: under {0:.1f}ms ({1} FPS)".format(maxFrameTime*1000, FPS))
 
 # states (does circuitpython support enums?)
 UNKNOWN = 0
@@ -88,5 +92,5 @@ while True:
         rgb.fill(colorGenerator.color)
 
     frameTime = time.monotonic() - now
-
-    time.sleep(1/60 - frameTime)  # target 60FPS
+    if frameTime < maxFrameTime:
+        time.sleep(maxFrameTime - frameTime)
